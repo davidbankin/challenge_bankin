@@ -10,7 +10,7 @@ The command `./gradlew build` will build the project and run the unit tests.
 
 ## The challenge
 The challenge consists in: 
-* Integrating the `List account` endpoint from our Bridge API (https://docs.bridgeapi.io/v2018.06.15/reference#list-accounts). The calls are already partially implemented in the `BridgeClient.java` class.
+* Integrating the `List account` endpoint from our Bridge API (https://docs.bridgeapi.io/v2018.06.15/reference/list-accounts). The calls are already partially implemented in the `BridgeClient.java` class.
 * Using the payload returned by our API response, the endpoint `/mycontroller/myroute` from this project is supposed to return:
   * All the accounts of the user
   * The sum of the user's accounts which are of the type `CHECKING` or `SAVINGS`, rounded to the upper hundred 
