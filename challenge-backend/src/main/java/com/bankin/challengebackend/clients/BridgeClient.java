@@ -11,10 +11,9 @@ public interface BridgeClient {
 
     @POST("/v2/authenticate")
     Call<AuthenticateResponse> authenticate(@Header("Bankin-Version") String version,
+                                            @Header("Bankin-Device") String deviceId,
                                             @Query(value = "email", encoded = true) String email,
-                                            @Query(value = "password", encoded = true) String password,
-                                            @Query("client_id") String clientId,
-                                            @Query("client_secret") String clientSecret);
+                                            @Query(value = "password", encoded = true) String password);
 
     @GET("/v2/changeme")
     Call<GetAccountResponse> getAccounts(@Header("Bankin-Version") String version,
