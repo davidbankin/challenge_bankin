@@ -20,4 +20,4 @@ Notes:
 * Most of the code is already in place, it's mostly a matter of fixing and renaming things. Please read the aforementionned `List account` documentation carefully.
 * You're more than welcome to rename classes, methods, fields and REST routes
 * Since there is a tiny bit of business logic to implement, some unit tests are most welcome
-* **The credentials necessary for authenticating to the Bridge API will be provided to you in the email sent to you for the exercise. `client_id` and `client_secret` are to be configured in `application.yml`. The user's credentials are hardcoded in the `BridgeService.java` class.**
+* **The device id necessary for authenticating to the Bankin API will be provided to you in the email sent to you for the exercise. The user's credentials are hardcoded in the `BridgeService.java` class.**

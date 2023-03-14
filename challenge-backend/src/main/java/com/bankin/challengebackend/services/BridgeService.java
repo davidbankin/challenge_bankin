@@ -28,17 +28,15 @@ public class BridgeService {
 
     @Value("${bridge.api.version}")
     private String version;
-    @Value("${bridge.api.client-id}")
-    private String clientId;
-    @Value("${bridge.api.client-secret}")
-    private String clientSecret;
+    @Value("${bridge.api.device-id}")
+    private String deviceId;
 
     /**
      * This method is "complete" and doesn't need editing, except if you feel some things could be improved (there
      * is no trap)
      */
     private Optional<AuthenticateResponse> authenticateUser(String email, String password) throws IOException {
-        var response = bridgeClient.authenticate(version, email, password, clientId, clientSecret).execute();
+        var response = bridgeClient.authenticate(version, deviceId, email, password).execute();
         if (response.isSuccessful()) {
             return Optional.of(response.body());
         }

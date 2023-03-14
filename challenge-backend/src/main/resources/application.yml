@@ -1,5 +1,5 @@
 bridge.api:
   base-url: https://sync.bankin.com
   version: 2018-06-15
-  client-id:
-  client-secret:
+  device-id:
+ 
