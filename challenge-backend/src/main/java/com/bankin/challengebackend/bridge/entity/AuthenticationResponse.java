@@ -8,8 +8,8 @@ import lombok.Data;
 public class AuthenticationResponse {
 
   @JsonProperty("access_token")
-  public String accessToken;
+  String accessToken;
 
   @JsonProperty("expires_at")
-  public Instant expiresAt;
+  Instant expiresAt;
 }

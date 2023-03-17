@@ -1,7 +1,7 @@
 package com.bankin.challengebackend.bridge.api;
 
-import com.bankin.challengebackend.bridge.internal.AuthenticationResponse;
-import com.bankin.challengebackend.bridge.internal.ListAccountsResponse;
+import com.bankin.challengebackend.bridge.entity.AuthenticationResponse;
+import com.bankin.challengebackend.bridge.entity.ListAccountsResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;

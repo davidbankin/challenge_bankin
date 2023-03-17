@@ -1,11 +1,9 @@
-package com.bankin.challengebackend.controllers;
+package com.bankin.challengebackend.account.controller;
 
-import com.bankin.challengebackend.account.entity.AccountDao;
-import com.bankin.challengebackend.clients.GetAccountResponse;
-import com.bankin.challengebackend.services.BridgeService;
+import com.bankin.challengebackend.account.model.AccountAggregation;
+import com.bankin.challengebackend.account.service.AccountService;
 import java.io.IOException;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,27 +18,24 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/accounts")
-public class AccountsController {
+@RequiredArgsConstructor
+public class AccountController {
 
-  @Autowired private BridgeService bridgeService;
+  private final AccountService accountService;
 
+  /**
+   * Returns an aggregation of all accounts.
+   *
+   * @return a {@link AccountAggregationApiResponse}
+   * @throws IOException still this exception, still no time
+   */
   @GetMapping
-  public ListAccountResponse list() throws IOException {
-    GetAccountResponse response = bridgeService.fetchAccounts();
-    List<AccountDao> accounts = response.accounts;
-    long accountsSum =
-        (long)
-            Math.ceil(
-                accounts.stream()
-                    .filter(AccountsController::isCheckingOrSavings)
-                    .mapToDouble(account -> account.balance)
-                    .sum());
-    long roundedValue = ((accountsSum + 99) / 100) * 100;
+  public AccountAggregationApiResponse list() throws IOException {
+    AccountAggregation aggregation = accountService.aggregateAccounts();
 
-    return ListAccountResponse.builder().accounts(accounts).roundedValue(roundedValue).build();
-  }
-
-  private static boolean isCheckingOrSavings(AccountDao account) {
-    return account.type.equals("CHECKING") || account.type.equals("SAVINGS");
+    return AccountAggregationApiResponse.builder()
+        .accounts(aggregation.getAccounts())
+        .roundedValue(aggregation.getRoundedValue())
+        .build();
   }
 }
